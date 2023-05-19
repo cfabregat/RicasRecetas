@@ -1,0 +1,39 @@
+.logo{
+    width: 250px;
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+}
+
+ion-button{
+    display: block;
+    width: auto;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+ion-card{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: block;
+    width: auto;
+    opacity: 96%;
+    margin-top: 20px;
+    border-radius: 25px;
+}
+
+ion-card-title{
+    align-items: center;
+    margin: auto;
+    font-size: 30px;
+}
+
+ion-content{
+    --background: url('../../assets/img/fondo1.jpg');
+}
+
+.registro{
+    width: auto;   
+    margin-top: 20px;
+    border-radius: 20px;
+}
