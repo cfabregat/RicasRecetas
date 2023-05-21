@@ -33,9 +33,7 @@ export class LoginPage implements OnInit {
     var usuario = localStorage.getItem('login_usuario') ;
     var clave = localStorage.getItem('login_clave') ;
 
-    console.log('Prueba');
-/*
-    if(usuario == f.nombre && clave == f.password){
+    if( usuario == f.nombre && clave == f.password ){
        console.log('Ingresado')
     } else{
        const alert = await this.alertController.create({
@@ -43,7 +41,7 @@ export class LoginPage implements OnInit {
          message: 'Los datos ingresados son incorrectos',
          buttons: ['Aceptar']
        });
+       await alert.present();
     }
-*/    
   }
 }
