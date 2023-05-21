@@ -1,4 +1,3 @@
-
 <ion-content class="ion-padding">
 
   <img class="logo" src="assets/icon/logo.png" alt="logo">
@@ -13,16 +12,16 @@
           <ion-input formControlName="nombre"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label  position="floating">Password</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
+          <ion-label  position="floating">Clave</ion-label>
+          <ion-input formControlName="clave" type="password"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label  position="floating">Confirm Password</ion-label>
-          <ion-input formControlName="confirm-password" type="password"></ion-input>
+          <ion-label  position="floating">Confirmar Clave</ion-label>
+          <ion-input formControlName="clave2" type="password"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label  position="floating">Pregunta de Seguridad</ion-label>
-          <ion-input formControlName="pregunta1"></ion-input>
+          <ion-input formControlName="pregunta"></ion-input>
         </ion-item>
       </form>
       <ion-button (click)="guardar()">Registrarse</ion-button>

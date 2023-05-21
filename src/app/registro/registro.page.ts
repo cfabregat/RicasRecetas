@@ -15,9 +15,9 @@ export class RegistroPage implements OnInit {
     
     this.formularioRegistro = this.fb.group({
       'nombre': new FormControl("", Validators.required),
-      'password': new FormControl("", Validators.required),
-      'confirm-password': new FormControl("", Validators.required),
-      'pregunta1': new FormControl("", Validators.required)
+      'clave': new FormControl("", Validators.required),
+      'clave2': new FormControl("", Validators.required),
+      'pregunta': new FormControl("", Validators.required)
     })
    }
    ngOnInit() {
@@ -33,20 +33,36 @@ export class RegistroPage implements OnInit {
         message: 'Se deben ingresar todos los datos',
         buttons: ['Aceptar']
       });
-
       await alert.present();
       return;
     }
+
+    if(f.clave != f.clave2 ){
+      const alert = await this.alertController.create({
+        header: 'Atención!!',
+        message: 'La claves ingresadas no coinciden',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
+      return;
+    }
+
+
+
     // Este reset sirve para resetear todos los campos del formulario
     else{
       this.formularioRegistro.reset();
     }
 
-    var usuario = {
+    var login = {
       nombre: f.nombre,
-      password: f.password
+      clave: f.clave,
+      pregunta: f.pregunta,
+      autologin: "0"
     }
-    localStorage.setItem('usuario', JSON.stringify(usuario));
+    
+    localStorage.setItem('login', JSON.stringify(login));
+    console.log( login ) ;
   }
 }
 

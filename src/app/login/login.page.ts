@@ -25,15 +25,10 @@ export class LoginPage implements OnInit {
 
   async ingresar(){
     var f = this.formularioLogin.value;
-    
-    localStorage.setItem("login_usuario", "cfabregat" ) ;
-    localStorage.setItem("login_clave", "1234" ) ;
-    localStorage.setItem("login_autologin", "0" ) ;
 
-    var usuario = localStorage.getItem('login_usuario') ;
-    var clave = localStorage.getItem('login_clave') ;
+    var login = JSON.parse( localStorage.getItem('login') || "" ) ;
 
-    if( usuario == f.nombre && clave == f.password ){
+    if( login.nombre == f.nombre && login.clave == f.password ){
        console.log('Ingresado')
     } else{
        const alert = await this.alertController.create({
