@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { RouterEvent } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -29,7 +30,6 @@ export class LoginPage implements OnInit {
     var login = JSON.parse( localStorage.getItem('login') || "" ) ;
 
     if( login.nombre == f.nombre && login.clave == f.password ){
-       
       console.log('Ingresado');
     } else{
        const alert = await this.alertController.create({
