@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
 
     this.formularioLogin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
-      'password': new FormControl("", Validators.required)
+      'clave': new FormControl("", Validators.required)
     })
    }
 
@@ -29,7 +29,8 @@ export class LoginPage implements OnInit {
     var login = JSON.parse( localStorage.getItem('login') || "" ) ;
 
     if( login.nombre == f.nombre && login.clave == f.password ){
-       console.log('Ingresado')
+       
+      console.log('Ingresado');
     } else{
        const alert = await this.alertController.create({
          header: 'Atención!!',
