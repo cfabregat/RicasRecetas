@@ -1,13 +1,14 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>menu</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <img class="logo" src="assets/icon/logo.png" alt="logo">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-button class="registro" (click)="cerrar_session()">Cerrar Session</ion-button>
+    <ion-button class="registro" (click)="cerrar_app()">Cerrar Aplicacion</ion-button>
+    <ion-card>
+    <ion-card-header>
+      <ion-card-title>Seleccione Receta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+    <ion-button class="registro">Marcar como Favorito</ion-button>
+  </ion-card>
 </ion-content>
