@@ -34,4 +34,14 @@ export class MenuPage implements OnInit {
     await alert.present();
   }
 
+  async favorito(){
+    const alert = await this.alertController.create({
+      header: '***Falta***',
+      message: 'Agregar al localstorage un favorito',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+
+
 }
