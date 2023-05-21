@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RouterEvent, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
 
-  constructor(public fb: FormBuilder, public alertController: AlertController) {
+  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router) {
 
     this.formularioLogin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
@@ -31,8 +32,7 @@ export class LoginPage implements OnInit {
 
     if( login.nombre == f.nombre && login.clave == f.clave ){
       console.log('Ingresado');
-      /*RouterModule.forChild()
-      .router.url('/menu') ;*/
+      this.router.navigate(['/menu']);
     } else{
        const alert = await this.alertController.create({
          header: 'Atención!!',
