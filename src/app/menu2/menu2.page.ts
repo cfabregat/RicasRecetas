@@ -13,17 +13,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class Menu2Page implements OnInit {
 
-  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private http:HttpClient) { }
+  menues!: any[];
 
-  totalAngularPackages = [] ;
-
-  ngOnInit() {
-    console.log("Prueba");
+  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private http:HttpClient) {
 
     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s').subscribe(data => {
-      console.log( data.meals ) ;
+    this.menues = data.meals ;
+    console.log( this.menues ) ;
     })
-    
+   }
+
+   ngOnInit() {
   }
 
   async cerrar_session(){

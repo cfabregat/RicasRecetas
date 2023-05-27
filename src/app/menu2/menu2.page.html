@@ -11,4 +11,11 @@
 <br />
 <ion-button class="registro" (click)="cerrar_session()">Cerrar Session</ion-button>
 <ion-button class="registro" (click)="cerrar_app()">Cerrar Aplicacion</ion-button>
+<br />
+<ion-list>
+    <ion-item *ngFor="let menu of menues">
+      <ion-label>{{menu.strMeal}}</ion-label>
+      <ion-label>{{menu.strMealThumb}}</ion-label>
+    </ion-item>
+</ion-list>
 </ion-content>
