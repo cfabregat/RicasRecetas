@@ -4,17 +4,26 @@ import { RouterEvent, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.page.html',
-  styleUrls: ['./menu.page.scss'],
+  selector: 'app-menu2',
+  templateUrl: './menu2.page.html',
+  styleUrls: ['./menu2.page.scss'],
 })
-export class MenuPage implements OnInit {
+export class Menu2Page implements OnInit {
 
-  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router) { }
+  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private http:HttpClient) { }
+
+  totalAngularPackages = [] ;
 
   ngOnInit() {
+    console.log("Prueba");
+
+    this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s').subscribe(data => {
+      console.log( data.meals ) ;
+    })
+    
   }
 
   async cerrar_session(){
@@ -43,6 +52,5 @@ export class MenuPage implements OnInit {
     });
     await alert.present();
   }
-
 
 }

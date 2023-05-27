@@ -28,18 +28,27 @@ export class LoginPage implements OnInit {
   async ingresar(){
     var f = this.formularioLogin.value;
 
-    var login = JSON.parse( localStorage.getItem('login') || "" ) ;
+    try {
+      var login = JSON.parse( localStorage.getItem('login') || "" ) ;
 
-    if( login.nombre == f.nombre && login.clave == f.clave ){
-      console.log('Ingresado');
-      this.router.navigate(['/menu']);
-    } else{
-       const alert = await this.alertController.create({
-         header: 'Atención!!',
-         message: 'Los datos ingresados son incorrectos',
-         buttons: ['Aceptar']
-       });
-       await alert.present();
+      if( login.nombre == f.nombre && login.clave == f.clave ){
+        console.log('Ingresado');
+        this.router.navigate(['/menu2']);
+      }else{
+        const alert = await this.alertController.create({
+          header: 'Atención!!',
+          message: 'Los datos ingresados son incorrectos',
+          buttons: ['Aceptar']
+        });
+        await alert.present();
+      }
+    } catch(e){
+      const alert = await this.alertController.create({
+        header: 'Atención!!',
+        message: 'Error en los datos almacenados en el navegador, vuelva a registrarse',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
     }
   }
 }

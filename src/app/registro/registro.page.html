@@ -8,20 +8,16 @@
     <ion-card-content>
       <form  [formGroup]="formularioRegistro">
         <ion-item>
-          <ion-label  position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
+          <ion-input formControlName="nombre" label="Nombre" position="floating"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label  position="floating">Clave</ion-label>
-          <ion-input formControlName="clave" type="password"></ion-input>
+          <ion-input formControlName="clave" label="Clave" position="floating" type="password"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label  position="floating">Confirmar Clave</ion-label>
-          <ion-input formControlName="clave2" type="password"></ion-input>
+          <ion-input formControlName="clave2" label="Confirmar Clave" position="floating" type="password"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label  position="floating">Pregunta de Seguridad</ion-label>
-          <ion-input formControlName="pregunta"></ion-input>
+          <ion-input formControlName="pregunta" label="Pregunta de Seguridad" position="floating"></ion-input>
         </ion-item>
       </form>
       <ion-button (click)="guardar()">Registrarse</ion-button>
