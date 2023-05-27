@@ -13,9 +13,9 @@
 <ion-button class="registro" (click)="cerrar_app()">Cerrar Aplicacion</ion-button>
 <br />
 <ion-list>
-    <ion-item *ngFor="let menu of menues">
+    <ion-item *ngFor="let menu of menues" [routerLink]="['/receta/' + menu.idMeal]">
+      <img width=50 height=50 src="{{menu.strMealThumb}}" alt="">
       <ion-label>{{menu.strMeal}}</ion-label>
-      <ion-label>{{menu.strMealThumb}}</ion-label>
     </ion-item>
 </ion-list>
 </ion-content>

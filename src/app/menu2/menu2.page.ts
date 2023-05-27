@@ -19,7 +19,6 @@ export class Menu2Page implements OnInit {
 
     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s').subscribe(data => {
     this.menues = data.meals ;
-    console.log( this.menues ) ;
     })
    }
 
