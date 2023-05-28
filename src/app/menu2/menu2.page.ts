@@ -26,12 +26,13 @@ export class Menu2Page implements OnInit {
   }
 
   async cerrar_session(){
-    const alert = await this.alertController.create({
-      header: '***Falta***',
-      message: 'Escribir el codigo para cerrar eliminar el localstore(login, autologin)',
-      buttons: ['Aceptar']
-    });
-    await alert.present();
+    this.router.navigate(['/login']);
+    // const alert = await this.alertController.create({
+    //   header: '***Falta***',
+    //   message: 'Escribir el codigo para cerrar eliminar el localstore(login, autologin)',
+    //   buttons: ['Aceptar']
+    // });
+    // await alert.present();
   }
 
   async cerrar_app(){

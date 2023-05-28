@@ -17,7 +17,7 @@
 -->
 <swiper-container>
   <swiper-slide class="slide-full" *ngFor="let menu of menues" [routerLink]="['/receta/' + menu.idMeal]">
-   <ion-card mode="ios">
+   <ion-card class='ion-card-slide'mode="ios">
       <ion-card-header>
         <ion-card-title>
           {{menu.strMeal}}
@@ -25,7 +25,6 @@
       </ion-card-header>
       <img src="{{menu.strMealThumb}}" alt="" class="slide-image">
    </ion-card>
-      
   </swiper-slide>
 </swiper-container>
 
