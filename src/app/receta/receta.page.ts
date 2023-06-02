@@ -20,7 +20,7 @@ export class RecetaPage implements OnInit {
   ngOnInit() {
     this.recetaId = this.activatedRoute.snapshot.paramMap.get("idMeal")
     this.http
-      .get("www.themealdb.com/api/json/v1/1/lookup.php?i" + this.recetaId)
+      .get("https://www.themealdb.com/api/json/v1/1/lookup.php?i" + this.recetaId)
       .subscribe(res => this.chracter = res)  }
 
   }
