@@ -13,6 +13,8 @@
     <ion-card-title>Seleccione Receta</ion-card-title>
   </ion-card-header>
   <ion-card-content>
+    <ion-searchbar [(ngModel)]="searchText" (ionChange)="buscarReceta()"></ion-searchbar>
+
 
 <!-- 
   Aqui se utilizó el swiper que reemplaza al slide

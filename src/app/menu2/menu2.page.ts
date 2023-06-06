@@ -14,12 +14,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class Menu2Page implements OnInit {
 
   menues!: any[];
+  searchText!: string;
+
 
   constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private http:HttpClient) {
 
     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s').subscribe(data => {
-    this.menues = data.meals ;
-    })
+    this.menues = data.meals;
+    });
+
    }
 
    ngOnInit() {
@@ -44,5 +47,15 @@ export class Menu2Page implements OnInit {
     });
     await alert.present();
   } */
+
+  async buscarReceta() {
+    try {
+      const data = await this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s=' + this.searchText).toPromise();
+      this.menues = data.meals;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 
 }
