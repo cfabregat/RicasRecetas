@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-receta',
@@ -10,19 +11,21 @@ import { ActivatedRoute } from "@angular/router";
 export class RecetaPage implements OnInit {
 
  
-  recetaId?: string | null;
+  recetaId!: any[];
   chracter!: any;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
-    
+  constructor(public fb: FormBuilder, private router:Router, private http:HttpClient) {
+
     }
 
   ngOnInit() {
-    this.recetaId = this.activatedRoute.snapshot.paramMap.get("idMeal")
-    this.http
-      .get("https://www.themealdb.com/api/json/v1/1/lookup.php?i" + this.recetaId)
-      .subscribe(res => this.chracter = res)  }
+    this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i' + this.recetaId)
+      .subscribe(data => {
+          this.chracter = data ;
+     })
 
+     /*.subscribe((res) => {
+          this.chracter = res;
+     */
+    }
   }
-
-
