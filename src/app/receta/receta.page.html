@@ -9,10 +9,12 @@
 
 <ion-content>
   <ion-card class="ion-text-center" *ngFor="let receta of recetaId">
-    <ion-card-header>    
+    <ion-card-header>  
+
         <ion-card-title>
                 {{chracter.strMeal}}
               </ion-card-title>
+
             </ion-card-header>  
 
               <img src="{{chracter.strMealThumb}}" alt="">         
@@ -20,12 +22,12 @@
               <ion-card-content>
                 {{chracter.strInstructions}}
             </ion-card-content>
+
           </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        
+          <!--CRISTIAN
   <br />
   <ion-button class="sacar_foto" (click)="sacar_foto()">Sacar foto</ion-button>
   <ion-button class="obtener_ubicacion" (click)="obtener_ubicacion()">Obtener Ubicación</ion-button>
 </ion-content>
+-->

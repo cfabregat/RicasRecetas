@@ -30,9 +30,8 @@ export class RecetaPage implements OnInit {
      */
     }
   }
-    
 
-
+/*CRISTIAN
   async sacar_foto(){
     const alert = await this.alertController.create({
       header: '***Falta***',
@@ -49,5 +48,8 @@ export class RecetaPage implements OnInit {
       });
       await alert.present();
       }
+      */
 
-}
+    
+  
+
