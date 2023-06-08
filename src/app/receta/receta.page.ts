@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { MealsEntity } from '../mealEntity';
 
 @Component({
   selector: 'app-receta',
@@ -12,20 +13,35 @@ import { AlertController } from '@ionic/angular';
 export class RecetaPage implements OnInit {
 
  
-  recetaId!: any[];
-  chracter!: any;
+  recetaId!: string | null;
+  chracter!: MealsEntity[];
+  
 
-  constructor(public fb: FormBuilder, private router:Router, private http:HttpClient,public alertController: AlertController) {
-
+  constructor(public fb: FormBuilder, 
+    private router:Router, 
+    private http:HttpClient,
+    public alertController: AlertController,
+    private activatedRoute: ActivatedRoute
+    ) {
+      
     }
 
-  ngOnInit() {
-    this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + this.recetaId)
+   ngOnInit() {
+    this.recetaId = this.activatedRoute.snapshot.paramMap.get("idMeal");
+    this.http.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + this.recetaId)
+    .subscribe((data) => {
+      this.chracter = <MealsEntity[]>JSON.parse(data.toString());
+      console.log(this.chracter[0]);
+
+     })
+    
+
+     /*
+     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + this.recetaId)
       .subscribe(data => {
           this.chracter = data ;
-     })
 
-     /*.subscribe((res) => {
+     .subscribe((res) => {
           this.chracter = res;
      */
     }
