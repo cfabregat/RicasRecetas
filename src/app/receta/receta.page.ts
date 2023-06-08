@@ -19,7 +19,7 @@ export class RecetaPage implements OnInit {
     }
 
   ngOnInit() {
-    this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i' + this.recetaId)
+    this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + this.recetaId)
       .subscribe(data => {
           this.chracter = data ;
      })
