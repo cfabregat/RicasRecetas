@@ -1,3 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menuDesplegable"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
   <img class="logo" src="assets/icon/logo.png" alt="logo">
   <ion-card>
@@ -26,8 +34,5 @@
 
   </ion-card-content>
 </ion-card>
-<br />
-<ion-button class="registro" (click)="cerrar_session()">Cerrar Session</ion-button>
-<ion-button class="registro" (click)="cerrar_app()">Cerrar Aplicacion</ion-button>
-<br />
+
 </ion-content>

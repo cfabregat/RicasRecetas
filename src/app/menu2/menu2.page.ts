@@ -28,33 +28,25 @@ export class Menu2Page implements OnInit {
    ngOnInit() {
   }
 
-  async cerrar_session(){
-    this.router.navigate(['/login']);
-    // const alert = await this.alertController.create({
-    //   header: '***Falta***',
-    //   message: 'Escribir el codigo para cerrar eliminar el localstore(login, autologin)',
-    //   buttons: ['Aceptar']
-    // });
-    // await alert.present();
-  }
 
-  async cerrar_app(){
+
+/*   async cerrar_app(){
     const alert = await this.alertController.create({
       header: '***Falta***',
       message: 'Escribir el codigo para cerrar la App',
       buttons: ['Aceptar']
     });
     await alert.present();
-  }
+  } */
 
-  async favorito(){
+/*   async favorito(){
     const alert = await this.alertController.create({
       header: '***Falta***',
       message: 'Agregar al localstorage un favorito',
       buttons: ['Aceptar']
     });
     await alert.present();
-  }
+  } */
 
   async buscarReceta() {
     try {
