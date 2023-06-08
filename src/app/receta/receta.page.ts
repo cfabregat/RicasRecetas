@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-receta',
@@ -14,7 +15,7 @@ export class RecetaPage implements OnInit {
   recetaId!: any[];
   chracter!: any;
 
-  constructor(public fb: FormBuilder, private router:Router, private http:HttpClient) {
+  constructor(public fb: FormBuilder, private router:Router, private http:HttpClient,public alertController: AlertController) {
 
     }
 
@@ -29,3 +30,24 @@ export class RecetaPage implements OnInit {
      */
     }
   }
+    
+
+
+  async sacar_foto(){
+    const alert = await this.alertController.create({
+      header: '***Falta***',
+      message: 'Escribir el codigo para sacar la foto',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+    }
+  async obtener_ubicacion(){
+      const alert = await this.alertController.create({
+        header: '***Falta***',
+        message: 'Escribir el codigo para obtener ubicacion',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
+      }
+
+}
