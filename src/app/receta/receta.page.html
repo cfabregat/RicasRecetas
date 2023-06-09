@@ -8,21 +8,18 @@
 </ion-header>
 <ion-content>
   <div>
-  <ion-card class="ion-text-center">
-    <ion-card-header>  
+    <ion-card class="ion-text-center">
+      <ion-card-header>  
         <ion-card-title>
-                {{chracter.strMeal}}
-              </ion-card-title>
-            </ion-card-header>
-
-              <img src="{{chracter.strMealThumb}}" alt="">      
-              
-              <ion-card-content>
-                {{chracter.strInstructions}}
-            </ion-card-content>
-
-          </ion-card>
-        </div>
+          Nombre: {{chracter.strMeal}}
+        </ion-card-title>
+        </ion-card-header>
+          Foto: <img src="{{chracter.strMealThumb}}" alt="Imagen">      
+        <ion-card-content>
+          Instrucciones: {{chracter.strInstructions}}
+        </ion-card-content>
+    </ion-card>
+  </div>
   <br />
   <ion-button class="sacar_foto" (click)="sacar_foto()">Sacar foto</ion-button>
   <ion-button class="obtener_ubicacion" (click)="obtener_ubicacion()">Obtener Ubicación</ion-button>
