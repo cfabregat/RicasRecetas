@@ -15,6 +15,7 @@ export class RecetaPage implements OnInit {
  
   recetaId!: string | null;
   chracter!: MealsEntity;
+  chracter!: MealsEntity;
   
 
   constructor(public fb: FormBuilder, 
@@ -26,13 +27,15 @@ export class RecetaPage implements OnInit {
       
     }
 
-   ngOnInit() {
+   async ngOnInit() {
     this.recetaId = this.activatedRoute.snapshot.paramMap.get("idMeal");
     this.http.get<any>("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + this.recetaId)
     .subscribe((data) => {
-      this.chracter = data.meals[0];
-      console.log(this.chracter);
+      this.chracter = <MealsEntity[]>JSON.parse(data.toString());
+      console.log(this.chracter[0]);
+
      })
+    }
     
 
      /*
@@ -44,7 +47,7 @@ export class RecetaPage implements OnInit {
           this.chracter = res;
      */
     }
-  }
+  
 
 /*CRISTIAN
   async sacar_foto(){
