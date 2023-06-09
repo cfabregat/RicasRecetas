@@ -12,12 +12,9 @@ import { MealsEntity } from '../mealEntity';
 })
 export class RecetaPage implements OnInit {
 
- 
   recetaId!: string | null;
-  chracter!: MealsEntity;
-  chracter!: MealsEntity;
-  
-
+  chracter!: any;
+ 
   constructor(public fb: FormBuilder, 
     private router:Router, 
     private http:HttpClient,
@@ -31,25 +28,12 @@ export class RecetaPage implements OnInit {
     this.recetaId = this.activatedRoute.snapshot.paramMap.get("idMeal");
     this.http.get<any>("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + this.recetaId)
     .subscribe((data) => {
-      this.chracter = <MealsEntity[]>JSON.parse(data.toString());
-      console.log(this.chracter[0]);
+      this.chracter = data.meals[0];
+      console.log(this.chracter);
 
      })
     }
     
-
-     /*
-     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + this.recetaId)
-      .subscribe(data => {
-          this.chracter = data ;
-
-     .subscribe((res) => {
-          this.chracter = res;
-     */
-    }
-  
-
-/*CRISTIAN
   async sacar_foto(){
     const alert = await this.alertController.create({
       header: '***Falta***',
@@ -66,8 +50,4 @@ export class RecetaPage implements OnInit {
       });
       await alert.present();
       }
-      */
-
-    
-  
-
+    }
