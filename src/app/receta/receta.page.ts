@@ -12,7 +12,6 @@ import { MealsEntity } from '../mealEntity';
 })
 export class RecetaPage implements OnInit {
 
- 
   recetaId!: string | null;
   chracter!: MealsEntity;
   
@@ -32,13 +31,14 @@ export class RecetaPage implements OnInit {
     .subscribe((data) => {
       this.chracter = data.meals[0];
       console.log(this.chracter);
-      
+
      })
     }
-  }
+    
+  
 
 /*CRISTIAN
-  async sacar_foto(){
+    
     const alert = await this.alertController.create({
       header: '***Falta***',
       message: 'Escribir el codigo para sacar la foto',
@@ -54,8 +54,5 @@ export class RecetaPage implements OnInit {
       });
       await alert.present();
       }
-      */
-
-    
-  
-
+    }*/
+  }
