@@ -35,18 +35,7 @@ export class RecetaPage implements OnInit {
       
      })
     }
-    
-
-     /*
-     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + this.recetaId)
-      .subscribe(data => {
-          this.chracter = data ;
-
-     .subscribe((res) => {
-          this.chracter = res;
-     */
-    }
-  
+  }
 
 /*CRISTIAN
   async sacar_foto(){

@@ -8,25 +8,40 @@
 </ion-header>
 
 <ion-content>
-  <div>
-  <ion-card class="ion-text-center">
-    <ion-card-header>  
-        <ion-card-title>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+         <div *ngIf="chracter">
+            <ion-card class="ion-text-center">
+              <ion-card-title>
                 {{chracter.strMeal}}
               </ion-card-title>
-            </ion-card-header>
+            </ion-card>
 
-              <img src="{{chracter.strMealThumb}}" alt="">      
-              
+            <ion-card class="ion-text-center">
+             <img src="{{chracter.strMealThumb}}" alt="">      
+            </ion-card>
+
+            <ion-card class="ion-text-center">
+              <ion-card-title>Instrucciones</ion-card-title>
               <ion-card-content>
+                <div style='text-align:justify'>
                 {{chracter.strInstructions}}
+                </div>
             </ion-card-content>
-
-          </ion-card>
+        
+        </ion-card>
         </div>
-          <!--CRISTIAN
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+ </ion-content>        
+ 
+ <!--CRISTIAN
   <br />
   <ion-button class="sacar_foto" (click)="sacar_foto()">Sacar foto</ion-button>
   <ion-button class="obtener_ubicacion" (click)="obtener_ubicacion()">Obtener Ubicación</ion-button>
-</ion-content>
+
 -->
