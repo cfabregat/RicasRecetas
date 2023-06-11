@@ -34,11 +34,8 @@ export class RecetaPage implements OnInit {
 
      })
     }
-    
-  
 
-/*CRISTIAN
-    
+    async sacar_foto(){
     const alert = await this.alertController.create({
       header: '***Falta***',
       message: 'Escribir el codigo para sacar la foto',
@@ -46,7 +43,8 @@ export class RecetaPage implements OnInit {
     });
     await alert.present();
     }
-  async obtener_ubicacion(){
+  
+    async obtener_ubicacion(){
       const alert = await this.alertController.create({
         header: '***Falta***',
         message: 'Escribir el codigo para obtener ubicacion',
@@ -54,5 +52,5 @@ export class RecetaPage implements OnInit {
       });
       await alert.present();
       }
-    }*/
-  }
+    }
+  
