@@ -5,6 +5,11 @@ import { FormBuilder } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MealsEntity } from '../mealEntity';
 
+import { Geolocation } from '@capacitor/geolocation';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+
 @Component({
   selector: 'app-receta',
   templateUrl: './receta.page.html',
@@ -36,7 +41,22 @@ export class RecetaPage implements OnInit {
     }
 
     async sacar_foto(){
-    const alert = await this.alertController.create({
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri
+      });
+    
+      // image.webPath will contain a path that can be set as an image src.
+      // You can access the original file using image.path, which can be
+      // passed to the Filesystem API to read the raw data of the image,
+      // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
+      var imageUrl = image.webPath;
+    
+      // Can be set to the src of an image now
+      //imageElement.src = imageUrl;
+
+      const alert = await this.alertController.create({
       header: '***Falta***',
       message: 'Escribir el codigo para sacar la foto',
       buttons: ['Aceptar']
@@ -45,9 +65,13 @@ export class RecetaPage implements OnInit {
     }
   
     async obtener_ubicacion(){
+      const coordinates = await Geolocation.getCurrentPosition();
+
+      console.log( 'Posicion Actual:' , coordinates);
+
       const alert = await this.alertController.create({
         header: '***Falta***',
-        message: 'Escribir el codigo para obtener ubicacion',
+        message: 'Posicion Actual:' + coordinates,
         buttons: ['Aceptar']
       });
       await alert.present();
