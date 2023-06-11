@@ -15,5 +15,7 @@ Cristian:
     npx cap sync
 
     npm install @ionic/pwa-elements
+
+    npm install @capacitor/filesystem
     
 --!>

@@ -5,9 +5,11 @@ import { FormBuilder } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MealsEntity } from '../mealEntity';
 
-import { Geolocation } from '@capacitor/geolocation';
-import { Camera, CameraResultType } from '@capacitor/camera';
-import { defineCustomElements } from '@ionic/pwa-elements/loader';
+//import { Geolocation } from '@capacitor/geolocation';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+//import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+
 
 
 @Component({
@@ -44,8 +46,19 @@ export class RecetaPage implements OnInit {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: true,
-        resultType: CameraResultType.Uri
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera
       });
+
+      const savedImageFile = await Filesystem.writeFile({
+        path: 'photos/' + new Date().getTime() + '.jpeg',
+        data: image.path!,
+        directory: Directory.Data
+      });
+    
+      // Guardar la ruta de la imagen en el LocalStorage
+      const imagePath = savedImageFile.uri;
+      localStorage.setItem('capturedImage', imagePath);
     
       // image.webPath will contain a path that can be set as an image src.
       // You can access the original file using image.path, which can be
@@ -56,25 +69,27 @@ export class RecetaPage implements OnInit {
       // Can be set to the src of an image now
       //imageElement.src = imageUrl;
 
-      const alert = await this.alertController.create({
-      header: '***Falta***',
-      message: 'Escribir el codigo para sacar la foto',
-      buttons: ['Aceptar']
-    });
-    await alert.present();
-    }
+    //   const alert = await this.alertController.create({
+    //   header: '***Falta***',
+    //   message: 'Escribir el codigo para sacar la foto',
+    //   buttons: ['Aceptar']
+    // });
+    // await alert.present();
+    // }
   
-    async obtener_ubicacion(){
-      const coordinates = await Geolocation.getCurrentPosition();
+    // async obtener_ubicacion(){
+    //   const coordinates = await Geolocation.getCurrentPosition();
 
-      console.log( 'Posicion Actual:' , coordinates);
+    //   console.log( 'Posicion Actual:' , coordinates);
 
-      const alert = await this.alertController.create({
-        header: '***Falta***',
-        message: 'Posicion Actual:' + coordinates,
-        buttons: ['Aceptar']
-      });
-      await alert.present();
-      }
+    //   const alert = await this.alertController.create({
+    //     header: '***Falta***',
+    //     message: 'Posicion Actual:' + coordinates,
+    //     buttons: ['Aceptar']
+    //   });
+    //   await alert.present();
+    //   }
     }
+
+  }
   
