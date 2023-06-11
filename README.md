@@ -16,4 +16,6 @@ Cristian:
 
     npm install @ionic/pwa-elements
     
+    npm install @ionic/storage-angular --force
+ 
 --!>

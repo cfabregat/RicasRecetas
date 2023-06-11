@@ -8,6 +8,8 @@ import { PreparacionesPageRoutingModule } from './preparaciones-routing.module';
 
 import { PreparacionesPage } from './preparaciones.page';
 
+import { Storage } from '@ionic/storage-angular';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { PreparacionesPage } from './preparaciones.page';
     IonicModule,
     PreparacionesPageRoutingModule
   ],
-  declarations: [PreparacionesPage]
+  declarations: [PreparacionesPage],
+  providers: [Storage]
 })
 export class PreparacionesPageModule {}

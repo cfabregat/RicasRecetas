@@ -8,6 +8,8 @@ import { RecetaPageRoutingModule } from './receta-routing.module';
 
 import { RecetaPage } from './receta.page';
 
+import { Storage } from '@ionic/storage-angular';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { RecetaPage } from './receta.page';
     IonicModule,
     RecetaPageRoutingModule
   ],
-  declarations: [RecetaPage]
+  declarations: [RecetaPage],
+  providers: [Storage],
 })
 export class RecetaPageModule {}
