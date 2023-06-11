@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MenuDesplegableComponent } from './component/menu-desplegable/menu-desplegable.component';
 
+
 @NgModule({
   declarations: [AppComponent, MenuDesplegableComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],

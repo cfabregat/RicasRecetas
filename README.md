@@ -18,4 +18,6 @@ Cristian:
 
     npm install @capacitor/filesystem
     
+    npm install @ionic/storage-angular --force
+ 
 --!>
