@@ -19,5 +19,8 @@ Cristian:
     npm install @capacitor/filesystem
     
     npm install @ionic/storage-angular --force
+
+    npm install crypto-js
+    npm install @types/crypto-js
  
 --!>
