@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RouterEvent, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
 
-  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router) {
+  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private menu: MenuController) {
 
     this.formularioLogin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
@@ -53,6 +53,8 @@ export class LoginPage implements OnInit {
 
     this.formularioLogin.reset();
   }
-
-
+   
+  ionViewWillEnter(){
+    this.menu.enable(false);
+  }
 }
