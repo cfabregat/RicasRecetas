@@ -28,7 +28,10 @@ ion-content{
 }
 
 .registro{
-    width: 60%;   
-    margin-top: 20px;
-    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: white;
+    font-size: 120%;
+    margin-top: 30px;
 }
