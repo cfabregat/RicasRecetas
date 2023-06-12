@@ -7,10 +7,10 @@
     <ion-card-content>
       <form [formGroup]="formularioLogin">
         <ion-item>
-          <ion-input formControlName="nombre" label="Nombre" position="floating"></ion-input>
+          <ion-input type="password" formControlName="nombre" label="Nombre" position="floating"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input formControlName="clave" label="Clave" position="floating" type="password"></ion-input>
+          <ion-input type="password" formControlName="clave" label="Clave" position="floating" type="password"></ion-input>
         </ion-item>
       </form>
       <ion-button class="registro" (click)="ingresar()">Ingresar</ion-button>
