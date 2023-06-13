@@ -1,0 +1,12 @@
+[
+    {
+      "url": "/menu2",
+      "iconName":"library-outline",
+      "optionName":"Recetas"
+    },
+    {
+      "url": "/preparaciones",
+      "iconName":"book-outline",
+      "optionName":"Mis Preparaciones"
+    }
+]
