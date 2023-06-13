@@ -1,0 +1,42 @@
+
+
+.menu-header{
+    height: 60px;
+    width: 350px;
+    background: #F29727;
+    background: linear-gradient( 90 deg, #F29727 0%, #F24C3D 100% );
+    box-shadow: 0px 1px 10px rgba(242, 190,34,0.5);
+   
+}
+
+.menu-title{
+    position: absolute;
+    top:20px;
+    left: 100px;
+    display: flex;
+    align-items: center; 
+}
+
+
+.action-button{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+    ion-button{
+        text-transform: capitalize;
+        font-weight: 200;
+        --background: #F29727;
+        --border-raidus: 20px;
+    }
+    ion-icon{
+        margin: 1.5px;
+    }
+}
+.menu-item ion-icon{
+    
+  
+    margin-right: 20px;
+    color: #F2BE22;
+  
+}
