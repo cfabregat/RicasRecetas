@@ -2,13 +2,15 @@
     
 Cristian:
 
-    npm install @angular/cli
-
-    npm install @angular/common
+    Descargar e instalar: : Visual Code
+    Descargar e instalar: node.js
     
-    npm install @angular/http
+    npm install -g @ionic/cli
+    npm install -g @angular/cli
+    npm install -g @angular/common
+    npm install -g @angular/http
 
-    npm install @capacitor/camera
+    npm install -g @capacitor/camera
     npx cap sync
 
     npm install @capacitor/geolocation
