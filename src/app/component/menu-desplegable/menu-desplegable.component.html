@@ -6,13 +6,16 @@
     </ion-toolbar>
   </ion-header>
   <ion-content ><!-- class="ion-padding" -->
-    <!--
-        Perfil (opcional)
-        Menu principal (tiene que aparecer depende la pag)
-        Mis preparaciones
-        Cerrar sesion -->
-    <ion-menu-toggle auto-hide="true"> <!-- parq que se cierre de forma automatica cuando se lecciones un item y *ngf para que se itere (*ngFor= "let i of menuOpts")-->
-      <ion-item [routerLink]="['menu2']">
+
+    <ion-menu-toggle *ngFor= "let i of menuOpts | async" auto-hide="true"> 
+      
+      <ion-item [routerLink]="i.url">
+        <ion-icon slot="start" [name]="i.iconName"></ion-icon>
+        {{i.optionName}}
+      </ion-item>
+  
+
+      <!-- <ion-item [routerLink]="['menu2']">
         <ion-icon slot="start" name="library-outline"></ion-icon>
         Recetas
       </ion-item>
@@ -20,13 +23,16 @@
       <ion-item [routerLink]="['preparaciones']">
         <ion-icon slot="start" name="book-outline"></ion-icon>
         Mis Preparaciones
-      </ion-item>
-       <!-- para el cerrar session -->
+      </ion-item> -->
+     
+
+    </ion-menu-toggle>
+      <!-- para el cerrar session -->
+    <ion-menu-toggle auto-hide="true">
       <ion-item class="registro" (click)="cerrar_session()">
         <ion-icon name="close-circle-outline"></ion-icon>
         Cerrar Session
       </ion-item> 
-
     </ion-menu-toggle>
    
   </ion-content>
