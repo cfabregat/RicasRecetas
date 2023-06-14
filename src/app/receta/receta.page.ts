@@ -8,7 +8,10 @@ import { MealsEntity } from '../mealEntity';
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import '@ionic/pwa-elements';
+//import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
+//defineCustomElements(window);
 
 @Component({
   selector: 'app-receta',
@@ -19,7 +22,7 @@ export class RecetaPage implements OnInit {
 
   recetaId!: string | null;
   chracter!: MealsEntity;
-  
+  FOTO!:string | undefined ;
 
   constructor(public fb: FormBuilder, 
     private router:Router, 
@@ -55,11 +58,13 @@ export class RecetaPage implements OnInit {
     
       // Can be set to the src of an image now
       //imageElement.src = imageUrl;
+      this.FOTO = imageUrl;
 
       const alert = await this.alertController.create({
       header: '***Falta***',
-      message: 'Escribir el codigo para sacar la foto',
+      message: imageUrl,
       buttons: ['Aceptar']
+      
     });
     await alert.present();
     }
