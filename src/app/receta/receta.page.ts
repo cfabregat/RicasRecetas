@@ -4,13 +4,14 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MealsEntity } from '../mealEntity';
-
-//import { Geolocation } from '@capacitor/geolocation';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Storage } from '@ionic/storage-angular';
+import { Geolocation } from '@capacitor/geolocation';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import '@ionic/pwa-elements';
 //import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { Filesystem, Directory } from '@capacitor/filesystem';
 
-
+//defineCustomElements(window);
 
 @Component({
   selector: 'app-receta',
@@ -21,13 +22,14 @@ export class RecetaPage implements OnInit {
 
   recetaId!: string | null;
   chracter!: MealsEntity;
-  
+  FOTO!:string | undefined ;
 
   constructor(public fb: FormBuilder, 
     private router:Router, 
     private http:HttpClient,
     public alertController: AlertController,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private storage: Storage
     ) {
       
     }
@@ -46,19 +48,8 @@ export class RecetaPage implements OnInit {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: true,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera
+        resultType: CameraResultType.Uri
       });
-
-      const savedImageFile = await Filesystem.writeFile({
-        path: 'photos/' + new Date().getTime() + '.jpeg',
-        data: image.path!,
-        directory: Directory.Data
-      });
-    
-      // Guardar la ruta de la imagen en el LocalStorage
-      const imagePath = savedImageFile.uri;
-      localStorage.setItem('capturedImage', imagePath);
     
       // image.webPath will contain a path that can be set as an image src.
       // You can access the original file using image.path, which can be
@@ -68,28 +59,47 @@ export class RecetaPage implements OnInit {
     
       // Can be set to the src of an image now
       //imageElement.src = imageUrl;
+      this.FOTO = imageUrl;
 
-    //   const alert = await this.alertController.create({
-    //   header: '***Falta***',
-    //   message: 'Escribir el codigo para sacar la foto',
-    //   buttons: ['Aceptar']
-    // });
-    // await alert.present();
-    // }
-  
-    // async obtener_ubicacion(){
-    //   const coordinates = await Geolocation.getCurrentPosition();
-
-    //   console.log( 'Posicion Actual:' , coordinates);
-
-    //   const alert = await this.alertController.create({
-    //     header: '***Falta***',
-    //     message: 'Posicion Actual:' + coordinates,
-    //     buttons: ['Aceptar']
-    //   });
-    //   await alert.present();
-    //   }
+      const alert = await this.alertController.create({
+      header: '***Falta***',
+      message: imageUrl,
+      buttons: ['Aceptar']
+      
+    });
+    await alert.present();
     }
+  
+    async obtener_ubicacion(){
+      const coordinates = await Geolocation.getCurrentPosition();
 
-  }
+      console.log( 'Posicion Actual:' , coordinates);
+
+      const alert = await this.alertController.create({
+        header: '***Falta***',
+        message: 'Posicion Actual:' + coordinates,
+        buttons: ['Aceptar']
+      });
+      await alert.present();
+      }
+
+      async guardarRecetaEnMisPreparaciones() {
+        await this.storage.create();
+        
+        // Obtener las recetas almacenadas del storage
+        const storedData = await this.storage.get('chracter');
+        let preparaciones: MealsEntity[] = [];
+      
+        if (Array.isArray(storedData)) {
+          preparaciones = storedData; // Utilizar las recetas almacenadas existentes
+        } else if (storedData) {
+          preparaciones = [storedData]; // Si solo hay una receta almacenada, agregarla al arreglo
+        }
+      
+        preparaciones.push(this.chracter); // Agregar la nueva receta al arreglo
+      
+        await this.storage.set('chracter', preparaciones); // Guardar el arreglo actualizado en el storage
+      }
+      
+    }
   
