@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
 
       if( login.nombre == f.nombre && login.clave == f.clave ){
         console.log('Ingresado');
-        this.router.navigate(['/menu2']);
+        this.router.navigate(['/menu']);
       }else{
         const alert = await this.alertController.create({
           header: 'Atención!!',
