@@ -28,8 +28,10 @@
                 <div style='text-align:justify'>
                 {{chracter.strInstructions}}
                 </div>
+                <div style='text-align:justify'>
+                  <ion-img src="{{FOTO}}"></ion-img>
+                </div>
             </ion-card-content>
-        
         </ion-card>
         </div>
       </ion-col>
@@ -41,4 +43,5 @@
  
   <br />
   <ion-button class="sacar_foto" (click)="sacar_foto()">Sacar foto</ion-button>
-  <!-- <ion-button class="obtener_ubicacion" (click)="obtener_ubicacion()">Obtener Ubicación</ion-button> -->
+  <ion-button class="obtener_ubicacion" (click)="obtener_ubicacion()">Obtener Ubicación</ion-button>
+  <ion-button class="mis_preparaciones" (click)="guardarRecetaEnMisPreparaciones()">Agregar a Mis Preparaciones</ion-button>
