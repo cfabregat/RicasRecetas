@@ -95,11 +95,18 @@ export class RecetaPage implements OnInit {
         } else if (storedData) {
           preparaciones = [storedData]; // Si solo hay una receta almacenada, agregarla al arreglo
         }
-      
-        preparaciones.push(this.chracter); // Agregar la nueva receta al arreglo
-      
-        await this.storage.set('chracter', preparaciones); // Guardar el arreglo actualizado en el storage
+
+        let exists = this.laRecetaYaEstaEnElStorage(preparaciones, this.chracter)
+        if (!exists) {
+          preparaciones.push(this.chracter); // Agregar la nueva receta al arreglo
+          await this.storage.set('chracter', preparaciones); // Guardar el arreglo actualizado en el storage
+        } else {
+          alert("la receta ya esta en mis preparaciones")
+        }
       }
       
+      laRecetaYaEstaEnElStorage(preparaciones: MealsEntity[], receta: MealsEntity): Boolean {
+        return preparaciones.some((preparacion) => preparacion.strMeal === receta.strMeal);
+      }
     }
   
