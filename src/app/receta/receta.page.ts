@@ -24,6 +24,7 @@ export class RecetaPage implements OnInit {
   chracter!: MealsEntity;
   FOTO!:string | undefined ;
   preparaciones: MealsEntity[] = [];
+  FOTO2: string | undefined;
 
   constructor(public fb: FormBuilder, 
     private router:Router, 
@@ -63,13 +64,11 @@ export class RecetaPage implements OnInit {
       //imageElement.src = imageUrl;
       this.FOTO = imageUrl;
 
-      const alert = await this.alertController.create({
-      header: '***Falta***',
-      message: imageUrl,
-      buttons: ['Aceptar']
-      
-    });
-    await alert.present();
+      /*
+      const response = await fetch(image.webPath?);
+      const blob = await response.blob() ;
+      await this.storage.set('FOTO3', response.blob());
+      */
     }
   
     async obtener_ubicacion(){
@@ -77,13 +76,9 @@ export class RecetaPage implements OnInit {
 
       console.log( 'Posicion Actual:' , coordinates);
 
-      const alert = await this.alertController.create({
-        header: '***Falta***',
-        message: 'Posicion Actual:' + coordinates,
-        buttons: ['Aceptar']
-      });
-      await alert.present();
-      }
+      localStorage.setItem('posLatitud', coordinates.coords.latitude.toString());
+      localStorage.setItem('posLongitud', coordinates.coords.longitude.toString());
+    }
 
       async guardarRecetaEnMisPreparaciones() {
         let exists = this.laRecetaYaEstaEnElStorage(this.preparaciones, this.chracter)
