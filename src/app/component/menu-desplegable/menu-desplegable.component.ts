@@ -1,6 +1,9 @@
+import { MenuService } from './../../../services/menu.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterEvent, RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
+import { Observable } from 'rxjs';
+import { Menu } from 'src/model/menu';
 
 @Component({
   selector: 'app-menu-desplegable',
@@ -9,25 +12,14 @@ import { Router } from '@angular/router';
 })
 export class MenuDesplegableComponent  implements OnInit {
   
-  /* menuOpts: any;  */
+  menuOpts!: Observable<Menu[]>;  
 
-  constructor(private router:Router) { }
+  constructor( private router:Router, private menuService: MenuService) { }   
 
-  ngOnInit() {}
-   /*  this.menuOpts = [
-      {
-        "url": "./menu2/menu2.module",
-        "iconName":"library-outline",
-        "optionName":"Recetas"
-      },
-      {
-        "url": "./favoritos/favoritos.module",
-        "iconName":"book-outline",
-        "optionName":"Mis Preparaciones"
-      }
-    ]; */
+  ngOnInit( ) {
+    this.menuOpts = this.menuService.getMenu();
+  }
   
-
   async cerrar_session(){
     this.router.navigate(['/login']);
     // const alert = await this.alertController.create({

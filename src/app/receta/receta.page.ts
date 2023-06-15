@@ -23,6 +23,7 @@ export class RecetaPage implements OnInit {
   recetaId!: string | null;
   chracter!: MealsEntity;
   FOTO!:string | undefined ;
+  preparaciones: MealsEntity[] = [];
 
   constructor(public fb: FormBuilder, 
     private router:Router, 
@@ -42,6 +43,7 @@ export class RecetaPage implements OnInit {
       console.log(this.chracter);
 
      })
+     this.obtenerRecetas()
     }
 
     async sacar_foto(){
@@ -84,22 +86,51 @@ export class RecetaPage implements OnInit {
       }
 
       async guardarRecetaEnMisPreparaciones() {
-        await this.storage.create();
-        
-        // Obtener las recetas almacenadas del storage
-        const storedData = await this.storage.get('chracter');
-        let preparaciones: MealsEntity[] = [];
-      
-        if (Array.isArray(storedData)) {
-          preparaciones = storedData; // Utilizar las recetas almacenadas existentes
-        } else if (storedData) {
-          preparaciones = [storedData]; // Si solo hay una receta almacenada, agregarla al arreglo
+        let exists = this.laRecetaYaEstaEnElStorage(this.preparaciones, this.chracter)
+        if (!exists) {
+          this.preparaciones.push(this.chracter); // Agregar la nueva receta al arreglo
+          await this.storage.set('chracter', this.preparaciones); // Guardar el arreglo actualizado en el storage
+          alert("la receta se agrego en Mis Preparaciones")
+        } else {
+          alert("la receta ya esta en Mis preparaciones")
         }
-      
-        preparaciones.push(this.chracter); // Agregar la nueva receta al arreglo
-      
-        await this.storage.set('chracter', preparaciones); // Guardar el arreglo actualizado en el storage
       }
       
+      laRecetaYaEstaEnElStorage(preparaciones: MealsEntity[], receta: MealsEntity): Boolean {
+        return preparaciones.some((preparacion) => preparacion.strMeal === receta.strMeal);
+      }
+
+      async eliminarRecetaDelStorage() {
+
+        let exists = this.laRecetaYaEstaEnElStorage(this.preparaciones, this.chracter)
+        if (exists) {
+          let preparacionSinReceta = this.preparaciones.filter((preparacion) => preparacion.strMeal !== this.chracter.strMeal);
+          this.preparaciones = preparacionSinReceta
+          await this.storage.set('chracter', this.preparaciones);
+          alert("la receta se borro en Mis Preparaciones")
+        } else {
+          alert("la receta no esta en Mis Preparaciones")
+        }
+       
+      }
+
+      async obtenerRecetas() {
+        await this.storage.create();
+          // Obtener las recetas almacenadas del storage
+          const storedData = await this.storage.get('chracter');
+          let preparaciones: MealsEntity[] = [];
+        
+          if (Array.isArray(storedData)) {
+            preparaciones = storedData; // Utilizar las recetas almacenadas existentes
+          } else if (storedData) {
+            preparaciones = [storedData]; // Si solo hay una receta almacenada, agregarla al arreglo
+          }
+
+          this.preparaciones = preparaciones
+      }
+
+       refreshPage() {
+        location.reload();
+      }
     }
   

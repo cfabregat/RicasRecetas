@@ -1,34 +1,34 @@
 
 <ion-menu  menuId= "menuDesplegable" contentId="main-content">
-  <ion-header>
-    <ion-toolbar  color="primary">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+  
+  <ion-header class="menu-header">
+    
+      <ion-title class="menu-title">Menu</ion-title>
+  
   </ion-header>
-  <ion-content ><!-- class="ion-padding" -->
-    <!--
-        Perfil (opcional)
-        Menu principal (tiene que aparecer depende la pag)
-        Mis preparaciones
-        Cerrar sesion -->
-    <ion-menu-toggle auto-hide="true"> <!-- parq que se cierre de forma automatica cuando se lecciones un item y *ngf para que se itere (*ngFor= "let i of menuOpts")-->
-      <ion-item [routerLink]="['menu2']">
-        <ion-icon slot="start" name="library-outline"></ion-icon>
-        Recetas
+  <ion-content >
+
+    <ion-menu-toggle *ngFor= "let i of menuOpts | async" auto-hide="true" > 
+      
+      <ion-item  class="menu-item" [routerLink]="i.url">
+        <ion-icon slot="start" [name]="i.iconName"></ion-icon>
+        {{i.optionName}}
       </ion-item>
   
-      <ion-item [routerLink]="['preparaciones']">
-        <ion-icon slot="start" name="book-outline"></ion-icon>
-        Mis Preparaciones
-      </ion-item>
-       <!-- para el cerrar session -->
-      <ion-item class="registro" (click)="cerrar_session()">
-        <ion-icon name="close-circle-outline"></ion-icon>
-        Cerrar Session
-      </ion-item> 
+    </ion-menu-toggle>
+      <!-- para el cerrar session -->
+    
+  </ion-content>
+  <ion-footer>
+    <ion-menu-toggle auto-hide="true">
+      <div class="action-button">
+        <ion-button (click)="cerrar_session()">
+          <ion-icon  slot="start" name="close-circle-outline"></ion-icon>
+          Cerrar Session
+        </ion-button> 
+      </div>
 
     </ion-menu-toggle>
-   
-  </ion-content>
+  </ion-footer>
   
 </ion-menu>
