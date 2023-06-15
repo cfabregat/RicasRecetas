@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RouterEvent, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
+import { AES } from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
 
-  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router) {
+  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private menu: MenuController) {
 
     this.formularioLogin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
@@ -50,5 +51,67 @@ export class LoginPage implements OnInit {
       });
       await alert.present();
     }
+
+    this.formularioLogin.reset();
+  }
+
+  async RecuperarContrasena(){
+      const alert = await this.alertController.create({
+      header: 'Recuperar contraseña',
+      inputs: [
+        {
+          name: 'palabraClave',
+          type: 'text',
+          placeholder: 'Ingrese palabra clave'
+        }
+      ],
+      buttons: [
+          {
+            text: 'Comprobar',
+            handler: (data)=>{
+            this.comprobarPalabraClave(data.palabraClave);
+            }
+          },
+          { 
+            text: 'Cancelar',
+            role: 'cancel'
+          }
+        ],
+    });
+     await alert.present();
+    }
+   
+  ionViewWillEnter(){
+    this.menu.enable(false);
+  }
+
+  async comprobarPalabraClave(data: any){
+    
+    var login = JSON.parse(localStorage.getItem('login') || "" );
+
+    
+    if(login.claveEncriptada){
+      const claveDescifrada = AES.decrypt(login.claveEncriptada, login.pregunta).toString();
+      console.log(claveDescifrada);
+    
+    
+        if(data == login.pregunta){
+          const alert = await this.alertController.create({
+            header: 'Su contraseña es:',
+            message: 'Usuario: ' + login.nombre + 
+                     '  Contraseña: ' + login.clave, //claveDescifrada,
+            buttons: ['Aceptar']
+          });
+          await alert.present();
+        } else {
+          const alert = await this.alertController.create({
+            header: 'Palabra Incorrecta',
+            message: 'La palabra clave es incorrecta.',
+            buttons: ['Aceptar']
+          });
+          await alert.present();
+        }
+    }
   }
 }
+

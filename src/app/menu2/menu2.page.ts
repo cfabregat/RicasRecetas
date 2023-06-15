@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RouterEvent, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -17,7 +17,7 @@ export class Menu2Page implements OnInit {
   searchText!: string;
 
 
-  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private http:HttpClient) {
+  constructor(public fb: FormBuilder, public alertController: AlertController,private router:Router, private http:HttpClient, private menu:MenuController) {
 
     this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s').subscribe(data => {
     this.menues = data.meals;
@@ -57,5 +57,8 @@ export class Menu2Page implements OnInit {
     }
   }
   
+  ionViewWillEnter(){
+    this.menu.enable(true);
+  }
 
 }
