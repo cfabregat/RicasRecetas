@@ -52,8 +52,16 @@ export class Menu2Page implements OnInit {
     try {
       const data = await this.http.get<any>('https://www.themealdb.com/api/json/v1/1/search.php?s=' + this.searchText).toPromise();
       this.menues = data.meals;
+      console.log( "Trajo");
     } catch (error) {
-      console.error(error);
+      console.error( "Error" + error);
+
+      const alert = await this.alertController.create({
+        header: '***Error de Comunicacion***',
+        message: 'Error en la comunicación con la API, vuelva a intentar',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
     }
   }
   
