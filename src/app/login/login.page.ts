@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { RouterEvent, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
-import { AES } from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -89,12 +88,6 @@ export class LoginPage implements OnInit {
     
     var login = JSON.parse(localStorage.getItem('login') || "" );
 
-    
-    if(login.claveEncriptada){
-      const claveDescifrada = AES.decrypt(login.claveEncriptada, login.pregunta).toString();
-      console.log(claveDescifrada);
-    
-    
         if(data == login.pregunta){
           const alert = await this.alertController.create({
             header: 'Su contraseña es:',
@@ -111,7 +104,6 @@ export class LoginPage implements OnInit {
           });
           await alert.present();
         }
-    }
   }
 }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-import { AES } from 'crypto-js';
 
 @Component({
   selector: 'app-registro',
@@ -60,7 +59,6 @@ export class RegistroPage implements OnInit {
       clave: f.clave,
       pregunta: f.pregunta,
       autologin: "0",
-      //claveEncriptada: AES.encrypt(f.clave, f.pregunta).toString()
     }
     
     localStorage.setItem('login', JSON.stringify(login));
