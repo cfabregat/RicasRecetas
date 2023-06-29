@@ -21,5 +21,7 @@ Cristian:
     npm install -g @stencil/core
     
     npm install @ionic/storage-angular --force
- 
+
+    npm install -g crypto-js --force
+
 --!>
