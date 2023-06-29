@@ -27,8 +27,11 @@ ion-content{
     --background: url('../../assets/img/fondo1.jpg');
 }
 
-/* .registro{
-    width: auto;   
-    margin-top: 20px;
-    border-radius: 20px;
-} */
+.registro{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: white;
+    font-size: 120%;
+    margin-top: 30px;
+}
