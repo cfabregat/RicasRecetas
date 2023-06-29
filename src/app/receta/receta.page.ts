@@ -64,6 +64,8 @@ export class RecetaPage implements OnInit {
       //imageElement.src = imageUrl;
       this.FOTO = imageUrl;
 
+      const foto=document.querySelector(".fotooculta") as HTMLElement;
+      foto.style.display = "block" ;
       /*
       const response = await fetch(image.webPath?);
       const blob = await response.blob() ;
