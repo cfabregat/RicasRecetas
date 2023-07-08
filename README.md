@@ -1,5 +1,4 @@
-<!--  
-    
+
 Cristian:
 
     Descargar e instalar: : Visual Code
@@ -24,4 +23,3 @@ Cristian:
 
     npm install -g crypto-js --force
 
---!>
